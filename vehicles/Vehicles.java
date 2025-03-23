@@ -19,14 +19,14 @@ public class Vehicles{
             try {
                 switch (choice) {
                     case 1:
-                        DisplayVehicles.main(null);
-                        break;
-                    // case 2:
-                    //     AddCustomer.main(null);
-                    //     break;  
-                    // case 3:
-                    //         EditCustomer.main(null);
-                    //     break;
+                      DisplayVehicles.main(null);
+                      break;
+                    case 2:
+                      AddVehicle.main(null);
+                      break;  
+                    case 3:
+                      EditVehicle.main(null);
+                      break;
                     // // case 4:
                     // //     //DeleteCustomer.main(null);
                     // //     break;

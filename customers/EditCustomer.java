@@ -11,12 +11,22 @@ public class EditCustomer {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
-
+        PreparedStatement checkCustomer = null;
+        ResultSet rs = null;
         try {
             conn = DriverManager.getConnection(url);
 
             int customerId = inputInt("Enter Customer ID to update");
+            checkCustomer = conn.prepareStatement("select count(*) from customers where customerid = ?");
+            checkCustomer.setInt(1,customerId);
+            rs = checkCustomer.executeQuery();
+            rs.next();
+            int customerCount = rs.getInt(1);
 
+            if (customerCount== 0){
+              println("Customer Id does not exist");
+              return;
+            }
             while (true) {
                 String menu = """
 --------------------------------------------------------------
@@ -75,6 +85,12 @@ public class EditCustomer {
             e.printStackTrace();
         } finally {
             try {
+                if (checkCustomer != null) {
+                    checkCustomer.close();
+                }
+                if (rs != null) {
+                    rs.close();
+                }
                 if (pstmt != null) {
                     pstmt.close();
                 }

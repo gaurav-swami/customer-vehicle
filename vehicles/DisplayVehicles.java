@@ -14,10 +14,7 @@ public class DisplayVehicles {
         try {
             conn = DriverManager.getConnection(url);
             pstmt = conn.prepareStatement("Select * from vehicle");
-            rs = pstmt.executeQuery(); 
-
-            
-
+            rs = pstmt.executeQuery();
         
             while (rs.next()) {
               printf("%-6d ", rs.getInt("VID"));
