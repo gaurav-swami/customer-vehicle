@@ -13,35 +13,32 @@ public class AddCustomer{
         
 
         try {
-            conn = DriverManager.getConnection(url);
-            pstmt = conn.prepareStatement("insert into customers(customerId,name,address,phone,email) values (?,?,?,?,?);");
+          conn = DriverManager.getConnection(url);
+          pstmt = conn.prepareStatement("insert into customers(customerId,name,address,phone,email) values (?,?,?,?,?);");
+          
+
+          
+            int id = inputInt("Enter the id");
+            String name = input("Enter the name");
+            String address = input("Enter the address");
+            String phone = input("Enter the phone");
+            String email = input("Enter the email"); 
+
+            pstmt.setInt(1,id);
+            pstmt.setString(2,name);
+            pstmt.setString(3,address);
+            pstmt.setString(4, phone);
+            pstmt.setString(5, email);
+
+            int val = pstmt.executeUpdate();
+            if (val>0){
+              println("Rows Inserted");
+            }
+            else{
+              println("An error occured");
+            }
             
-
-            while (true){
-              int id = inputInt("Enter the id");
-              String name = input("Enter the name");
-              String address = input("Enter the address");
-              String phone = input("Enter the phone");
-              String email = input("Enter the email"); 
-
-              pstmt.setInt(1,id);
-              pstmt.setString(2,name);
-              pstmt.setString(3,address);
-              pstmt.setString(4, phone);
-              pstmt.setString(5, email);
-
-              int val = pstmt.executeUpdate();
-              if (val>0){
-                println("Rows Inserted");
-              }
-              else{
-                println("An error occured");
-              }
-              int choice = inputInt("Do you want to enter more : (y-1/n-0)");
-              if (choice == 0){
-                break;
-              }
-            }            
+                        
 
         
             
