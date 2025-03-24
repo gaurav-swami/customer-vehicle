@@ -17,8 +17,6 @@ public class DisplayBookings {
             pstmt = conn.prepareStatement("Select * from service_booking");
             rs = pstmt.executeQuery(); 
 
-            
-
         
             printf("%-6s %-6s %-10s %-12s %-15s %-20s %-10s %-20s\n", "BID", "VID", "ServiceID", "MechanicID", "ServiceDate", "Status", "Cost", "PaymentStatus");
             printf("------------------------------------------------------------------------------------------------------------------------------------\n");
