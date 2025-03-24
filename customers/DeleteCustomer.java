@@ -17,6 +17,7 @@ public class DeleteCustomer{
           pstmt = conn.prepareStatement("delete from customers where id = ?");
           
           int id = inputInt("Enter the id");
+          println(id);
           int val = pstmt.executeUpdate();
           if (val>0){
             println("Rows Inserted");
