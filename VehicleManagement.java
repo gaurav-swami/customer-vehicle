@@ -1,4 +1,4 @@
-import javax.swing.*;
+
 import static printing.Printing.*;
 import customers.Customers;
 import vehicles.Vehicles;
@@ -6,27 +6,24 @@ import mechanics.Mechanics;
 import services.Services;
 import bookings.Bookings;
 
-
 class VehicleManagement {
     public static void main(String args[]) {
         while (true) {
             String menu = """
---------------------------------------------------------------
-1. Manage Customers
-2. Manage Vehicles
-3. Manage Mechanics
-4. Manage Services
-5. Manage Bookings
-6. Exit
---------------------------------------------------------------
-            """;
+                    --------------------------------------------------------------
+                    1. Manage Customers
+                    2. Manage Vehicles
+                    3. Manage Mechanics
+                    4. Manage Services
+                    5. Manage Bookings
+                    6. Exit
+                    --------------------------------------------------------------
+                                """;
             println(menu);
 
-         
             int choice = inputInt("Enter a choice");
 
             try {
-
 
                 switch (choice) {
                     case 1:
@@ -48,7 +45,7 @@ class VehicleManagement {
                         System.exit(0);
                         break;
                     default:
-                        println( "Invalid choice! Please try again.");
+                        println("Invalid choice! Please try again.");
                 }
             } catch (NumberFormatException e) {
                 println("Some Error Occured");

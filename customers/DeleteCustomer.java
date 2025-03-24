@@ -2,7 +2,7 @@ package customers;
 
 import java.sql.*;
 import static printing.Printing.*;
-public class AddCustomer{
+public class DeleteCustomer{
 
     public static void main(String args[]) {
         String databasePath = "C:/Users/gaura/VM/VM/javadatabase.mdb";
