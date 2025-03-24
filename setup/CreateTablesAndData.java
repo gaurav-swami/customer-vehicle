@@ -77,16 +77,7 @@ public class CreateTablesAndData {
             System.out.println("SERVICE_BOOKING table created.");
 
             // Create SERVICE_HISTORY table
-            stmt.executeUpdate("""
-                    CREATE TABLE SERVICE_HISTORY (
-                        HID INT PRIMARY KEY,
-                        BID INT,
-                        WORK_DESCRIPTION TEXT,
-                        WORK_COST INT,
-                        FOREIGN KEY (BID) REFERENCES SERVICE_BOOKING(BID)
-                    )
-                    """);
-            System.out.println("SERVICE_HISTORY table created.");
+            
 
             System.out.println("All tables created.");
 

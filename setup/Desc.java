@@ -1,7 +1,4 @@
-
-
 import java.sql.*;
-import static printing.Printing.*;
 
 public class Desc {
 
@@ -22,19 +19,19 @@ public class Desc {
             rs = stmt.executeQuery(
                     "SELECT COLUMN_NAME, DATA_TYPE, IS_NULLABLE " +
                             "FROM INFORMATION_SCHEMA.COLUMNS " +
-                            "WHERE TABLE_NAME = 'VEHICLE'");
+                            "WHERE TABLE_NAME = 'SERVICE_BOOKING'");
 
-            println("Vehicle Table Description:");
-            println("---------------------------");
-            println("Column Name\tData Type\tNullable");
-            println("---------------------------\n");
+            System.out.println("Vehicle Table Description:");
+            System.out.println("---------------------------");
+            System.out.println("Column Name\tData Type\tNullable");
+            System.out.println("---------------------------\n");
 
             while (rs.next()) {
                 String columnName = rs.getString("COLUMN_NAME");
                 String dataType = rs.getString("DATA_TYPE");
                 String isNullable = rs.getString("IS_NULLABLE");
 
-                printf("%-15s\t%-10s\t%-8s\n", columnName, dataType, isNullable);
+                System.out.printf("%-15s\t%-10s\t%-8s\n", columnName, dataType, isNullable);
             }
 
         } catch (SQLException e) {
