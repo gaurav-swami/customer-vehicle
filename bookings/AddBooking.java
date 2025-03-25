@@ -19,7 +19,7 @@ public class AddBooking {
     try {
       conn = DriverManager.getConnection(url);
       pstmt = conn.prepareStatement(
-          "insert into service_booking(bid,vid,serviceId,mechanicId,service_date,status,total_cost,payment_status) values (?,?,?,?,date(),'Pending',?,?);");
+            "insert into service_booking(bid,vid,serviceId,mechanicId,service_date,status,total_cost,payment_status) values (?,?,?,?,date(),'Pending',?,?);");
 
       int bid = inputInt("Enter the bid");
       int vid = 0;
