@@ -25,9 +25,9 @@ public class Bookings {
                     case 2:
                         AddBooking.main(null);
                         break;
-                    // case 3:
-                    // EditCustomer.main(null);
-                    // break;
+                    case 3:
+                        EditBooking.main(null);
+                        break;
                     // // case 4:
                     // // //DeleteCustomer.main(null);
                     // // break;
