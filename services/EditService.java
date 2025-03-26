@@ -11,33 +11,18 @@ public class EditService {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
-        PreparedStatement checkService = null;
-        ResultSet rs = null;
-
         try {
             conn = DriverManager.getConnection(url);
 
-            int serviceId = inputInt("Enter Service ID to update");
-
-            checkService = conn.prepareStatement("SELECT COUNT(*) FROM SERVICES WHERE serviceId = ?");
-            checkService.setInt(1, serviceId);
-            rs = checkService.executeQuery();
-            rs.next();
-            int serviceCount = rs.getInt(1);
-
-            if (serviceCount == 0) {
-                println("Service ID does not exist");
-                return;
-            }
-
+            int serviceId = getValidId(conn, "services", "serviceId");
             while (true) {
                 String menu = """
---------------------------------------------------------------
-1. Update Service Name
-2. Update Description
-3. Update Price
-4. Exit
---------------------------------------------------------------""";
+                        --------------------------------------------------------------
+                        1. Update Service Name
+                        2. Update Description
+                        3. Update Price
+                        4. Exit
+                        --------------------------------------------------------------""";
                 println(menu);
                 int choice = inputInt("Enter a choice:");
 
@@ -81,12 +66,6 @@ public class EditService {
             e.printStackTrace();
         } finally {
             try {
-                if (rs != null) {
-                    rs.close();
-                }
-                if (checkService != null) {
-                    checkService.close();
-                }
                 if (pstmt != null) {
                     pstmt.close();
                 }

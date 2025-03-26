@@ -11,32 +11,19 @@ public class EditMechanic {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
-        PreparedStatement checkMechanic = null;
-        ResultSet rs = null;
 
         try {
             conn = DriverManager.getConnection(url);
 
-            int mechanicId = inputInt("Enter Mechanic ID to update");
-
-            checkMechanic = conn.prepareStatement("SELECT COUNT(*) FROM MECHANICS WHERE mechanicId = ?");
-            checkMechanic.setInt(1, mechanicId);
-            rs = checkMechanic.executeQuery();
-            rs.next();
-            int mechanicCount = rs.getInt(1);
-
-            if (mechanicCount == 0) {
-                println("Mechanic ID does not exist");
-                return;
-            }
+            int mechanicId = getValidId(conn, "mechanics", "mechanicId");
 
             while (true) {
                 String menu = """
---------------------------------------------------------------
-1. Update Name
-2. Update Phone
-3. Exit
---------------------------------------------------------------""";
+                        --------------------------------------------------------------
+                        1. Update Name
+                        2. Update Phone
+                        3. Exit
+                        --------------------------------------------------------------""";
                 println(menu);
                 int choice = inputInt("Enter a choice:");
 
@@ -74,12 +61,6 @@ public class EditMechanic {
             e.printStackTrace();
         } finally {
             try {
-                if (rs != null) {
-                    rs.close();
-                }
-                if (checkMechanic != null) {
-                    checkMechanic.close();
-                }
                 if (pstmt != null) {
                     pstmt.close();
                 }

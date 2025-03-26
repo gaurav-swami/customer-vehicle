@@ -1,10 +1,13 @@
-
 import static printing.Printing.*;
 import customers.Customers;
 import vehicles.Vehicles;
 import mechanics.Mechanics;
 import services.Services;
 import bookings.Bookings;
+
+
+// getValidId(), input(), inputInt, print(), println(), printf(): These functions are present in the printing package
+
 
 class VehicleManagement {
     public static void main(String args[]) {

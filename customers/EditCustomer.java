@@ -11,31 +11,20 @@ public class EditCustomer {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
-        PreparedStatement checkCustomer = null;
-        ResultSet rs = null;
+
         try {
             conn = DriverManager.getConnection(url);
-
-            int customerId = inputInt("Enter Customer ID to update");
-            checkCustomer = conn.prepareStatement("select count(*) from customers where customerid = ?");
-            checkCustomer.setInt(1,customerId);
-            rs = checkCustomer.executeQuery();
-            rs.next();
-            int customerCount = rs.getInt(1);
-
-            if (customerCount== 0){
-              println("Customer Id does not exist");
-              return;
-            }
+            // getValidId() is inside the printing package
+            int customerId = getValidId(conn, "customers", "customerId"); 
             while (true) {
                 String menu = """
---------------------------------------------------------------
-1. Update Name
-2. Update Address
-3. Update phone
-4. Update email
-5. Exit
---------------------------------------------------------------""";
+                        --------------------------------------------------------------
+                        1. Update Name
+                        2. Update Address
+                        3. Update phone
+                        4. Update email
+                        5. Exit
+                        --------------------------------------------------------------""";
                 println(menu);
                 int choice = inputInt("Enter a choice:");
 
@@ -71,7 +60,7 @@ public class EditCustomer {
                         continue;
                 }
 
-                if (choice >= 1 && choice <= 4) { 
+                if (choice >= 1 && choice <= 4) {
                     int val = pstmt.executeUpdate();
                     if (val > 0) {
                         println("Row Updated");
@@ -85,12 +74,7 @@ public class EditCustomer {
             e.printStackTrace();
         } finally {
             try {
-                if (checkCustomer != null) {
-                    checkCustomer.close();
-                }
-                if (rs != null) {
-                    rs.close();
-                }
+
                 if (pstmt != null) {
                     pstmt.close();
                 }

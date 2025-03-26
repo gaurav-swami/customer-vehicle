@@ -11,24 +11,13 @@ public class EditVehicle {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
-        PreparedStatement checkVehicle = null;
+        
         ResultSet rs = null;
 
         try {
             conn = DriverManager.getConnection(url);
 
-            int vehicleId = inputInt("Enter Vehicle ID to update");
-
-            checkVehicle = conn.prepareStatement("select count(*) from vehicle where vid = ?");
-            checkVehicle.setInt(1,vehicleId);
-            rs = checkVehicle.executeQuery();
-            rs.next();
-            int vehicleCount = rs.getInt(1);
-
-            if (vehicleCount== 0){
-              println("Vehicle Id does not exist");
-              return;
-            }
+            int vehicleId = getValidId(conn, "vehicle", "vid");
 
             while (true) {
                 String menu = """
@@ -97,9 +86,6 @@ public class EditVehicle {
             try {
                 if (pstmt != null) {
                     pstmt.close();
-                }
-                if (checkVehicle != null) {
-                    checkVehicle.close();
                 }
                 if (rs != null) {
                     rs.close();

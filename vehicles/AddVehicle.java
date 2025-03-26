@@ -3,6 +3,7 @@ package vehicles;
 import java.sql.*;
 import static printing.Printing.*;
 
+
 public class AddVehicle {
 
     public static void main(String args[]) {
@@ -11,29 +12,19 @@ public class AddVehicle {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
-        PreparedStatement checkCustomer = null;
+        
         ResultSet rs = null;
 
         try {
             conn = DriverManager.getConnection(url);
 
+            int customerId = getValidId(conn,"customers","customerId");
             int vid = inputInt("Enter the id");
             String v_no = input("Enter the vehicle number");
-            int customerId = inputInt("Enter the CustomerId");
             String make = input("Enter the make");
             String model = input("Enter the model");
             int year = inputInt("Enter the year");
-
-            checkCustomer = conn.prepareStatement("select count(*) from customers where customerid = ?");
-            checkCustomer.setInt(1, customerId);
-            rs = checkCustomer.executeQuery();
-            rs.next();
-            int customerCount = rs.getInt(1);
-
-            if (customerCount == 0) {
-                println("Customer Id does not exist");
-                return;
-            }
+            
 
             pstmt = conn
                     .prepareStatement("insert into vehicle(vid,v_no,customerid,make,model,year) values (?,?,?,?,?,?);");
@@ -58,9 +49,6 @@ public class AddVehicle {
             try {
                 if (rs != null) {
                     rs.close();
-                }
-                if (checkCustomer != null) {
-                    checkCustomer.close();
                 }
                 if (pstmt != null) {
                     pstmt.close();

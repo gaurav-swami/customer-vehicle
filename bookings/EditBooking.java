@@ -11,22 +11,10 @@ public class EditBooking {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
-        PreparedStatement checkBooking = null;
-        ResultSet rs = null;
         try {
             conn = DriverManager.getConnection(url);
 
-            int bookingId = inputInt("Enter Booking ID to update");
-            checkBooking = conn.prepareStatement("select count(*) from service_booking where bid = ?");
-            checkBooking.setInt(1,bookingId);
-            rs = checkBooking.executeQuery();
-            rs.next();
-            int bookingCount = rs.getInt(1);
-
-            if (bookingCount== 0){
-              println("booking Id does not exist");
-              return;
-            }
+            int bookingId = getValidId(conn, "service_booking", "bid");
             while (true) {
                 String menu = """
 --------------------------------------------------------------
@@ -86,12 +74,6 @@ public class EditBooking {
             e.printStackTrace();
         } finally {
             try {
-                if (checkBooking != null) {
-                    checkBooking.close();
-                }
-                if (rs != null) {
-                    rs.close();
-                }
                 if (pstmt != null) {
                     pstmt.close();
                 }
