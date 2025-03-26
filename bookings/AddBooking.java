@@ -19,61 +19,12 @@ public class AddBooking {
     try {
       conn = DriverManager.getConnection(url);
       pstmt = conn.prepareStatement(
-            "insert into service_booking(bid,vid,serviceId,mechanicId,service_date,status,total_cost,payment_status) values (?,?,?,?,date(),'Pending',?,?);");
+          "insert into service_booking(bid,vid,serviceId,mechanicId,service_date,status,total_cost,payment_status) values (?,?,?,?,date(),'Pending',?,?);");
 
       int bid = inputInt("Enter the bid");
-      int vid = 0;
-      int mechanicId = 0;
-      int serviceId = 0;
-
-      String smsg = "Enter the serviceId";
-      String mmsg = "Enter the mechanicID";
-      String vmsg = "Enter the vid";
-
-      while (true) {
-
-        vid = inputInt(vmsg);
-        checkVehicle = conn.prepareStatement("select count(*) from vehicle where vid = ?");
-        checkVehicle.setInt(1, vid);
-        rs = checkVehicle.executeQuery();
-        rs.next();
-        int vehicleCount = rs.getInt(1);
-        if (vehicleCount == 0) {
-          vmsg = "That vid doesn't exist, Enter again";
-        } else {
-          break;
-        }
-      }
-
-      while (true) {
-
-        serviceId = inputInt(smsg);
-        checkService = conn.prepareStatement("select count(*) from services where serviceId = ?");
-        checkService.setInt(1, serviceId);
-        rs = checkService.executeQuery();
-        rs.next();
-        int serviceCount = rs.getInt(1);
-        if (serviceCount == 0) {
-          smsg = "That serviceId does not exist, Enter again";
-        } else {
-          break;
-        }
-      }
-
-      while (true) {
-
-        mechanicId = inputInt(mmsg);
-        checkMechanic = conn.prepareStatement("select count(*) from mechanics where mechanicId= ?");
-        checkMechanic.setInt(1, mechanicId);
-        rs = checkMechanic.executeQuery();
-        rs.next();
-        int mechanicCount = rs.getInt(1);
-        if (mechanicCount == 0) {
-          mmsg = "That mechanicId does not exist, Enter again";
-        } else {
-          break;
-        }
-      }
+      int vid = getValidId(conn, "vehicle", "vid");
+      int mechanicId = getValidId(conn, "mechanics", "mechanicId");
+      int serviceId = getValidId(conn, "services", "serviceId");
 
       checkCost = conn.prepareStatement("Select price from services where serviceid = ?");
       checkCost.setInt(1, serviceId);
@@ -125,6 +76,29 @@ public class AddBooking {
         }
       } catch (SQLException ex) {
         ex.printStackTrace();
+      }
+    }
+  }
+
+  private static int getValidId(Connection conn, String tableName, String idColumnName) throws SQLException {
+    PreparedStatement checkId = null;
+    ResultSet rs = null;
+    int id;
+    String promptMessage = "Enter the " + idColumnName + "";
+    String errorMessage = "This " + idColumnName + " doesn't exist. Please Enter again";
+    while (true) {
+      id = inputInt(promptMessage);
+      checkId = conn.prepareStatement("Select count(*) from " + tableName + " where " + idColumnName + " = ?");
+      checkId.setInt(1, id);
+      rs = checkId.executeQuery();
+      rs.next();
+      int count = rs.getInt(1);
+      if (count == 0) {
+        promptMessage = errorMessage;
+      } else {
+        checkId.close();
+        rs.close();
+        return id;  
       }
     }
   }

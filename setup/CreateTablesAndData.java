@@ -77,7 +77,6 @@ public class CreateTablesAndData {
             System.out.println("SERVICE_BOOKING table created.");
 
             // Create SERVICE_HISTORY table
-            
 
             System.out.println("All tables created.");
 

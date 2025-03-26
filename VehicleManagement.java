@@ -10,14 +10,14 @@ class VehicleManagement {
     public static void main(String args[]) {
         while (true) {
             String menu = """
-                    --------------------------------------------------------------
+                                            
                     1. Manage Customers
                     2. Manage Vehicles
                     3. Manage Mechanics
                     4. Manage Services
                     5. Manage Bookings
                     6. Exit
-                    --------------------------------------------------------------
+                    ----------------------------------------------------------------------------------------------------
                                 """;
             println(menu);
 
