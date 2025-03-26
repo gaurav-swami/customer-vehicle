@@ -14,8 +14,7 @@ public class EditCustomer {
 
         try {
             conn = DriverManager.getConnection(url);
-            // getValidId() is inside the printing package
-            int customerId = getValidId(conn, "customers", "customerId"); 
+            int customerId = getValidId(conn, "customers", "customerId");
             while (true) {
                 String menu = """
                         --------------------------------------------------------------

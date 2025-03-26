@@ -1,3 +1,6 @@
+getValidId(), input(), inputInt, print(), println(), printf(): These functions are present in the printing package
+
+
 Ignore CreateTablesAndData.java it contains the schema of the tables that I created at the start of the project
 
 Ignore Display.java it displays Data from all the tables for production purposes 
