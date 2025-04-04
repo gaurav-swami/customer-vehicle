@@ -21,7 +21,7 @@ public class AddBooking {
       int vid = getValidId(conn, "vehicle", "vid");
       int mechanicId = getValidId(conn, "mechanics", "mechanicId");
       int serviceId = getValidId(conn, "services", "serviceId");
-      int totalCost = getTotalCost(conn, serviceId);
+      int totalCost = getTotalCost(conn, serviceId); // function defined under this main function 
       int payStatus = inputInt("Enter the status(paid-1/unpaid-0)");
       String paymentStatus = payStatus == 0 ? "Unpaid" : "Paid";
 

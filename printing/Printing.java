@@ -67,4 +67,16 @@ public class Printing {
             }
         }
     }
+
+    // public static void updateColumn(Connection conn, int updateId, String tableName, String updateColumnName, String idKeyName,
+    //         String type, String msg)
+    //         throws SQLException {
+    //     PreparedStatement update = conn
+    //             .prepareStatement(
+    //                     "update " + tableName + " set " + updateColumnName + " = ? where " + idKeyName + " = " + updateId);
+    //     if (type.equals("int")){
+    //         int value = inputInt(msg);
+    //     }
+    //     int val = update.executeUpdate();
+    // }
 }

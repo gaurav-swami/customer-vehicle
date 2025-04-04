@@ -42,7 +42,7 @@ public class EditCustomer {
                         break;
                     case 3:
                         String phone = input("Enter the phone:");
-                        pstmt = conn.prepareStatement("UPDATE customers SET phone = ? WHERE customerid = ?");
+                        pstmt = conn.prepareStatement("UP DATE customers SET phone = ? WHERE customerid = ?");
                         pstmt.setString(1, phone);
                         pstmt.setInt(2, customerId);
                         break;
