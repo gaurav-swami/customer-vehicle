@@ -68,15 +68,33 @@ public class Printing {
         }
     }
 
-    // public static void updateColumn(Connection conn, int updateId, String tableName, String updateColumnName, String idKeyName,
-    //         String type, String msg)
-    //         throws SQLException {
-    //     PreparedStatement update = conn
-    //             .prepareStatement(
-    //                     "update " + tableName + " set " + updateColumnName + " = ? where " + idKeyName + " = " + updateId);
-    //     if (type.equals("int")){
-    //         int value = inputInt(msg);
-    //     }
-    //     int val = update.executeUpdate();
-    // }
+    public static boolean hasPendingBookings(Connection conn, int id, String idColumnName) throws SQLException {
+        PreparedStatement checkPending = null;
+        ResultSet rs = null;
+        try {
+            String query = "SELECT COUNT(*) FROM service_booking WHERE " + idColumnName + " = ? AND status = 'Pending'";
+            checkPending = conn.prepareStatement(query);
+            checkPending.setInt(1, id);
+            rs = checkPending.executeQuery();
+            if (rs.next() && rs.getInt(1) > 0) {
+                return true; 
+            }
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace(); 
+                }
+            }
+            if (checkPending != null) {
+                try {
+                    checkPending.close();
+                } catch (SQLException e) {
+                    e.printStackTrace(); 
+                }
+            }
+        }
+        return false; 
+    }
 }

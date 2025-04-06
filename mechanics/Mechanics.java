@@ -28,9 +28,9 @@ public class Mechanics {
                     case 3:
                         EditMechanic.main(null);
                         break;
-                    // case 4:
-                    //     DeleteMechanic.main(null);
-                    //     break;
+                    case 4:
+                        DeleteMechanic.main(null);
+                        break;
                     case 5:
                         return;
                     default:
