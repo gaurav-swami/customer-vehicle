@@ -12,7 +12,7 @@ public class Vehicles {
           3. Edit a Vehicles
           4. Delete a Vehicles
           5. Search a Vehile
-          7. Exit
+          6. Exit
           --------------------------------------------------------------
                       """;
       println(menu);

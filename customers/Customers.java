@@ -29,9 +29,9 @@ public class Customers {
                     case 3:
                         EditCustomer.main(null);
                         break;
-                    // case 4:
-                    // //DeleteCustomer.main(null);
-                    // break;
+                    case 4:
+                        DeleteCustomer.main(null);
+                        break;
                     case 5:
                         SearchCustomer.main(null);
                         break;
