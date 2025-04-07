@@ -14,19 +14,51 @@ public class SearchCustomer {
 
     try {
       conn = DriverManager.getConnection(url);
-      int id = inputInt("Enter the customer ID: ");
-      rs = searchRecord(conn, "customerId", "Customers", id);
+      String menu = """
+          -----------------------------------------------------------------------------------------------
+          Enter the column to use while searching
+          1. Customer Id
+          2. Customer Mobile
+          3. Customer Email
+          -----------------------------------------------------------------------------------------------
+                      """;
+
+      println(menu);
+
+      int choice = inputInt("Enter your choice ");
+
+      switch (choice) {
+        case 1:
+          int id = inputInt("Enter the Customer ID: ");
+          rs = searchRecord(conn, "customerId", "Customers", id);
+          break;
+
+        case 2:
+          String mob = input("Enter the Customer ID: ");
+          rs = searchRecord(conn, "mobile", "Customers", mob);
+          break;
+
+        case 3:
+          String email = input("Enter the Customer Email");
+          rs = searchRecord(conn, "email", "Customers", email);
+          break;
+
+        default:
+          println("Invalid Choice");
+          break;
+      }
 
       if (rs.next()) {
-        println("Customer Details:");
+
+        println("Customer Details:\n");
         println("Customer ID: " + rs.getInt("customerId"));
         println("Name: " + rs.getString("name"));
         println("Address: " + rs.getString("address"));
         println("Phone: " + rs.getString("phone"));
-        println("Email: " + rs.getString("email"));
+        println("Email: " + rs.getString("email") + "\n");
 
       } else {
-        println("Customer with ID " + id + " not found.");
+        println("Customer was not found.");
       }
 
     } catch (SQLException e) {

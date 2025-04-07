@@ -31,8 +31,11 @@ public class Customers {
                     // case 4:
                     // //DeleteCustomer.main(null);
                     // break;
-                    case 5:
+                    case 6:
                         SearchCustomer.main(null);
+                        break;
+                    case 7:
+
                         return;
 
                     default:

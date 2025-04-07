@@ -102,6 +102,7 @@ public class Printing {
 
     public static ResultSet searchRecord(Connection conn, String keyName, String tableName, int id)
             throws SQLException {
+
         PreparedStatement searchIt = null;
         ResultSet rs = null;
 
@@ -109,6 +110,36 @@ public class Printing {
             String query = "SELECT * FROM " + tableName + " WHERE " + keyName + " = ?";
             searchIt = conn.prepareStatement(query);
             searchIt.setInt(1, id);
+            rs = searchIt.executeQuery();
+
+            return rs;
+        } catch (SQLException e) {
+
+            System.err.println("An error occurred during searchRecord: " + e.getMessage());
+            throw e;
+
+        } finally {
+            if (searchIt != null) {
+                try {
+                    searchIt.close();
+                } catch (SQLException e) {
+                    System.err.println("Error closing PreparedStatement: " + e.getMessage());
+
+                }
+            }
+        }
+
+    }
+
+    public static ResultSet searchRecord(Connection conn, String keyName, String tableName, String value)
+            throws SQLException {
+        PreparedStatement searchIt = null;
+        ResultSet rs = null;
+
+        try {
+            String query = "SELECT * FROM " + tableName + " WHERE " + keyName + " = ?";
+            searchIt = conn.prepareStatement(query);
+            searchIt.setString(1, value);
             rs = searchIt.executeQuery();
 
             return rs;
