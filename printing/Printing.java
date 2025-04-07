@@ -28,6 +28,10 @@ public class Printing {
         System.out.print(message);
     }
 
+    public static void showMsg(String msg) {
+        JOptionPane.showMessageDialog(null, msg);
+    }
+
     public static String input(String message) {
         return JOptionPane.showInputDialog(null, message);
     }
@@ -130,7 +134,8 @@ public class Printing {
             return rs;
         } catch (SQLException e) {
 
-            System.err.println("An error occurred during searchRecord: " + e.getMessage());
+            
+            println("An error occurred during searchRecord: " + e.getMessage());
             throw e;
 
         } finally {
@@ -155,7 +160,7 @@ public class Printing {
             return rs;
         } catch (SQLException e) {
 
-            System.err.println("An error occurred during searchRecord: " + e.getMessage());
+            println("An error occurred during searchRecord: " + e.getMessage());
             throw e;
 
         } finally {

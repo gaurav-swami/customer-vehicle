@@ -5,15 +5,13 @@ import mechanics.Mechanics;
 import services.Services;
 import bookings.Bookings;
 
-
 // getValidId(), input(), inputInt, print(), println(), printf(): These functions are present in the printing package
-
 
 class VehicleManagement {
     public static void main(String args[]) {
         while (true) {
             String menu = """
-                    ----------------------------------------------------------------------------------------------------                        
+                    ----------------------------------------------------------------------------------------------------
                     1. Manage Customers
                     2. Manage Vehicles
                     3. Manage Mechanics
@@ -48,10 +46,10 @@ class VehicleManagement {
                         System.exit(0);
                         break;
                     default:
-                        println("Invalid choice! Please try again.");
+                        showMsg("Invalid choice! Please try again.");
                 }
             } catch (NumberFormatException e) {
-                println("Some Error Occured");
+                showMsg("Some Error Occured");
             }
         }
     }

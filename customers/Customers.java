@@ -40,7 +40,7 @@ public class Customers {
                         return;
 
                     default:
-                        println("Invalid choice! Please try again.");
+                        showMsg("Invalid choice! Please try again.");
                 }
             } catch (NumberFormatException e) {
                 println("Some Error Occured");

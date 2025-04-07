@@ -44,7 +44,7 @@ public class SearchCustomer {
           break;
 
         default:
-          println("Invalid Choice");
+          showMsg("Invalid Choice");
           break;
       }
 
@@ -58,7 +58,7 @@ public class SearchCustomer {
         println("Email: " + rs.getString("email") + "\n");
 
       } else {
-        println("Customer was not found.");
+        showMsg("Customer was not found.");
       }
 
     } catch (SQLException e) {

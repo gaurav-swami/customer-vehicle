@@ -1,6 +1,8 @@
 package customers;
+
 import java.sql.*;
 import static printing.Printing.*;
+
 public class DisplayCustomers {
 
     public static void main(String args[]) {
@@ -14,18 +16,15 @@ public class DisplayCustomers {
         try {
             conn = DriverManager.getConnection(url);
             pstmt = conn.prepareStatement("Select * from customers");
-            rs = pstmt.executeQuery(); 
+            rs = pstmt.executeQuery();
 
-            
-
-        
             while (rs.next()) {
-              printf("%-6d ", rs.getInt("customerId"));
+                printf("%-6d ", rs.getInt("customerId"));
                 printf("%-20s ", rs.getString("name"));
                 printf("%-50s ", rs.getString("address"));
                 printf("%-10s ", rs.getString("phone"));
                 printf("%-30s ", rs.getString("email"));
-              println();
+                println();
             }
 
         } catch (SQLException e) {
