@@ -11,7 +11,7 @@ public class EditVehicle {
 
         Connection conn = null;
         PreparedStatement pstmt = null;
-        
+
         ResultSet rs = null;
 
         try {
@@ -21,14 +21,14 @@ public class EditVehicle {
 
             while (true) {
                 String menu = """
---------------------------------------------------------------
-1. Update Vehicle Number
-2. Update Customer ID
-3. Update Make
-4. Update Model
-5. Update Year
-6. Exit
---------------------------------------------------------------""";
+                        --------------------------------------------------------------
+                        1. Update Vehicle Number
+                        2. Update Customer ID
+                        3. Update Make
+                        4. Update Model
+                        5. Update Year
+                        6. Exit
+                        --------------------------------------------------------------""";
                 println(menu);
                 int choice = inputInt("Enter a choice:");
 
@@ -66,16 +66,16 @@ public class EditVehicle {
                     case 6:
                         return;
                     default:
-                        println("Invalid choice! Please try again.");
+                        showMsg("Invalid choice! Please try again.");
                         continue;
                 }
 
                 if (choice >= 1 && choice <= 5) {
                     int val = pstmt.executeUpdate();
                     if (val > 0) {
-                        println("Row Updated");
+                        showMsg("Row Updated");
                     } else {
-                        println("An error occurred or no rows were updated.");
+                        showMsg("An error occurred or no rows were updated.");
                     }
                 }
             }

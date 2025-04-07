@@ -38,7 +38,7 @@ public class SearchService {
           break;
 
         default:
-          println("Invalid Choice");
+          showMsg("Invalid Choice");
           return;
       }
 
@@ -51,7 +51,7 @@ public class SearchService {
         println("Price: " + rs.getInt("price") + "\n");
 
       } else {
-        println("Service was not found.");
+        showMsg("Service was not found.");
       }
 
     } catch (SQLException e) {

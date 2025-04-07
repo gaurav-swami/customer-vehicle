@@ -14,7 +14,6 @@ public class SearchBooking {
 
     try {
       conn = DriverManager.getConnection(url);
-
       int bid = inputInt("Enter Booking ID: ");
       rs = searchRecord(conn, "BID", "SERVICE_BOOKING", bid);
 
@@ -28,7 +27,7 @@ public class SearchBooking {
         println("Status: " + rs.getString("STATUS"));
         println("Total Cost: " + rs.getInt("TOTAL_COST") + "\n");
       } else {
-        println("Booking was not found.");
+        showMsg("Booking was not found.");
       }
 
     } catch (SQLException e) {

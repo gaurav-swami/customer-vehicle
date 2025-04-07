@@ -38,7 +38,7 @@ public class SearchVehicle {
           break;
 
         default:
-          println("Invalid Choice");
+          showMsg("Invalid Choice");
           break;
       }
 
@@ -53,7 +53,7 @@ public class SearchVehicle {
         println("Year: " + rs.getInt("year") + "\n");
 
       } else {
-        println("Vehicle was not found.");
+        showMsg("Vehicle was not found.");
       }
 
     } catch (SQLException e) {

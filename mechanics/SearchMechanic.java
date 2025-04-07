@@ -38,7 +38,7 @@ public class SearchMechanic {
           break;
 
         default:
-          println("Invalid Choice");
+          showMsg("Invalid Choice");
           return;
       }
 
@@ -50,7 +50,7 @@ public class SearchMechanic {
         println("Phone: " + rs.getString("phone") + "\n");
 
       } else {
-        println("Mechanic was not found.");
+        showMsg("Mechanic was not found.");
       }
 
     } catch (SQLException e) {

@@ -20,7 +20,8 @@ public class AddService {
             String description = input("Enter the service description");
             int price = inputInt("Enter the service price");
 
-            pstmt = conn.prepareStatement("INSERT INTO SERVICES (serviceId, serviceName, description, price) VALUES (?, ?, ?, ?)");
+            pstmt = conn.prepareStatement(
+                    "INSERT INTO SERVICES (serviceId, serviceName, description, price) VALUES (?, ?, ?, ?)");
 
             pstmt.setInt(1, serviceId);
             pstmt.setString(2, serviceName);
@@ -29,9 +30,9 @@ public class AddService {
 
             int val = pstmt.executeUpdate();
             if (val > 0) {
-                println("Service added successfully");
+                showMsg("Service added successfully");
             } else {
-                println("Failed to add service");
+                showMsg("Failed to add service");
             }
 
         } catch (SQLException e) {

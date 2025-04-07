@@ -16,12 +16,12 @@ public class DeleteVehicle {
       conn = DriverManager.getConnection(url);
       int vehicleId = getValidId(conn, "vehicle", "VID");
       if (hasPendingPayment(conn, vehicleId, "vid")) {
-        println("Cannot delete this vehicle as it has pending payment on services. ");
+        showMsg("Cannot delete this vehicle as it has pending payment on services. ");
         return;
       }
 
       if (hasPendingBookings(conn, vehicleId, "vid")) {
-        println("Cannot delete the vehicle as it has pending bookings.");
+        showMsg("Cannot delete the vehicle as it has pending bookings.");
         return;
       }
 
@@ -36,14 +36,14 @@ public class DeleteVehicle {
 
       int val = pstmt.executeUpdate();
       if (val > 0) {
-        println("Vehicle deleted successfully.");
+        showMsg("Vehicle deleted successfully.");
       } else {
-        println("Vehicle not found or an error occurred.");
+        showMsg("Vehicle not found or an error occurred.");
       }
 
     } catch (SQLException e) {
       e.printStackTrace();
-      System.err.println("Database error: " + e.getMessage());
+      println("Database error: " + e.getMessage());
     } finally {
       try {
         if (pstmt != null) {

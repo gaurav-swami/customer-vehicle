@@ -48,16 +48,16 @@ public class EditService {
                     case 4:
                         return;
                     default:
-                        println("Invalid choice! Please try again.");
+                        showMsg("Invalid choice! Please try again.");
                         continue;
                 }
 
                 if (choice >= 1 && choice <= 3) {
                     int val = pstmt.executeUpdate();
                     if (val > 0) {
-                        println("Row Updated");
+                        showMsg("Row Updated");
                     } else {
-                        println("An error occurred or no rows were updated.");
+                        showMsg("An error occurred or no rows were updated.");
                     }
                 }
             }

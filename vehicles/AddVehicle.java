@@ -38,9 +38,9 @@ public class AddVehicle {
 
             int val = pstmt.executeUpdate();
             if (val > 0) {
-                println("Rows Inserted");
+                showMsg("Rows Inserted");
             } else {
-                println("An error occured");
+                showMsg("An error occured");
             }
 
         } catch (SQLException e) {

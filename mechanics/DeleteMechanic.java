@@ -20,7 +20,7 @@ public class DeleteMechanic {
       int mechanicId = getValidId(conn, "mechanics", "mechanicId");
 
       if (hasPendingBookings(conn, mechanicId, "mechanicId")) {
-        println("Cannot delete the mechanic as this mechanic has pending services.");
+        showMsg("Cannot delete the mechanic as this mechanic has pending services.");
         return; // Exit the main method
       }
 
@@ -36,9 +36,9 @@ public class DeleteMechanic {
 
       int val = pstmt.executeUpdate();
       if (val > 0) {
-        println("Row Deleted");
+        showMsg("Row Deleted");
       } else {
-        println("An error occurred");
+        showMsg("An error occurred");
       }
 
     } catch (SQLException e) {

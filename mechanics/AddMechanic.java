@@ -27,9 +27,9 @@ public class AddMechanic {
 
         int val = pstmt.executeUpdate();
         if (val > 0) {
-          println("Mechanic added successfully");
+          showMsg("Mechanic added successfully");
         } else {
-          println("Failed to add mechanic");
+          showMsg("Failed to add mechanic");
         }
 
       } catch (SQLException e) {

@@ -17,7 +17,7 @@ public class DeleteService {
       int serviceId = getValidId(conn, "services", "serviceId");
 
       if (hasPendingBookings(conn, serviceId, "serviceId")) {
-        println("Cannot delete the service as it has pending bookings.");
+        showMsg("Cannot delete the service as it has pending bookings.");
         return;
       }
 
@@ -27,21 +27,20 @@ public class DeleteService {
       updateCompletedBookings.setInt(2, serviceId);
       updateCompletedBookings.executeUpdate();
       updateCompletedBookings.close();
-      
 
       pstmt = conn.prepareStatement("delete from services where serviceId = ?");
       pstmt.setInt(1, serviceId);
 
       int val = pstmt.executeUpdate();
       if (val > 0) {
-        println("Service deleted successfully.");
+        showMsg("Service deleted successfully.");
       } else {
-        println("Service not found or an error occurred.");
+        showMsg("Service not found or an error occurred.");
       }
 
     } catch (SQLException e) {
       e.printStackTrace();
-      System.err.println("Database error: " + e.getMessage());
+      println("Database error: " + e.getMessage());
     } finally {
       try {
         if (pstmt != null) {
