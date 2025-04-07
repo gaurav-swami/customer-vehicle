@@ -27,6 +27,7 @@ public class DeleteService {
       updateCompletedBookings.setInt(2, serviceId);
       updateCompletedBookings.executeUpdate();
       updateCompletedBookings.close();
+      
 
       pstmt = conn.prepareStatement("delete from services where serviceId = ?");
       pstmt.setInt(1, serviceId);

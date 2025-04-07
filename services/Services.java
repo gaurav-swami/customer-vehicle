@@ -32,6 +32,7 @@ public class Services {
 
                     case 4:
                         DeleteService.main(null);
+                        break;
                     case 5:
                         SearchService.main(null);
                         break;
