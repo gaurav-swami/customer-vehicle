@@ -29,9 +29,9 @@ public class Vehicles {
           case 3:
             EditVehicle.main(null);
             break;
-          // // case 4:
-          // // //DeleteCustomer.main(null);
-          // // break;
+          case 4:
+            DeleteVehicle.main(null);
+            break;
           case 5:
             SearchVehicle.main(null);
             break;
