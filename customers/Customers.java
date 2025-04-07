@@ -11,7 +11,8 @@ public class Customers {
                     2. Add a Customer
                     3. Edit a Customer
                     4. Delete a Customer
-                    5. Exit
+                    5. Search a Customer
+                    6. Exit
                     -----------------------------------------------------------------------------------------------
                                 """;
             println(menu);
@@ -31,10 +32,10 @@ public class Customers {
                     // case 4:
                     // //DeleteCustomer.main(null);
                     // break;
-                    case 6:
+                    case 5:
                         SearchCustomer.main(null);
                         break;
-                    case 7:
+                    case 6:
 
                         return;
 
