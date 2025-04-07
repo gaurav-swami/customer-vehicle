@@ -36,7 +36,7 @@ public class DeleteMechanic {
 
       int val = pstmt.executeUpdate();
       if (val > 0) {
-        showMsg("Row Deleted");
+        showMsg("Mechanic Deleted Successfully");
       } else {
         showMsg("An error occurred");
       }

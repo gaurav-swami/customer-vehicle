@@ -11,8 +11,8 @@ public class Mechanics {
                     2. Add a Mechanic
                     3. Edit a Mechanic
                     4. Delete a Mechanic
-                    6. Search a Mechanic
-                    5. Exit
+                    5. Search a Mechanic
+                    6. Exit
                     --------------------------------------------------------------
                                         """;
             println(menu);

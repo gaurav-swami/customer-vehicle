@@ -16,7 +16,7 @@ public class SearchCustomer {
       conn = DriverManager.getConnection(url);
       String menu = """
           -----------------------------------------------------------------------------------------------
-          Enter the column to use while searching
+          Search by column
           1. Customer Id
           2. Customer Mobile
           3. Customer Email

@@ -18,6 +18,17 @@ public class DisplayCustomers {
             pstmt = conn.prepareStatement("Select * from customers");
             rs = pstmt.executeQuery();
 
+            println(line);
+
+            printf("%-6s ", "ID");
+            printf("%-20s ", "Name");
+            printf("%-50s ", "Address");
+            printf("%-10s ", "Phone");
+            printf("%-30s ", "Email");
+            println();
+
+            println(line);
+
             while (rs.next()) {
                 printf("%-6d ", rs.getInt("customerId"));
                 printf("%-20s ", rs.getString("name"));

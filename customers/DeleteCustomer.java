@@ -14,28 +14,24 @@ public class DeleteCustomer {
 
         try {
             conn = DriverManager.getConnection(url);
-            pstmt = conn.prepareStatement("delete from customers where id = ?");
+            pstmt = conn.prepareStatement("DELETE FROM customers WHERE email = ?");
 
-            int id = inputInt("Enter the id");
-            println(id);
+            String email = "saiyamsomani@gmail.com"; // fixed email
+            pstmt.setString(1, email);
+
             int val = pstmt.executeUpdate();
             if (val > 0) {
-                showMsg("Row Inserted");
+                showMsg("Customer deleted");
             } else {
-                showMsg("An error occured");
+                showMsg("No customer found with that email");
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             try {
-
-                if (pstmt != null) {
-                    pstmt.close();
-                }
-                if (conn != null) {
-                    conn.close();
-                }
+                if (pstmt != null) pstmt.close();
+                if (conn != null) conn.close();
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }

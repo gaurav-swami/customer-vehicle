@@ -55,7 +55,7 @@ public class EditService {
                 if (choice >= 1 && choice <= 3) {
                     int val = pstmt.executeUpdate();
                     if (val > 0) {
-                        showMsg("Row Updated");
+                        showMsg("Service Updated Successfully");
                     } else {
                         showMsg("An error occurred or no rows were updated.");
                     }

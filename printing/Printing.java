@@ -7,7 +7,8 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 public class Printing {
-
+    
+    public static String line = "------------------------------------------------------------------------------------------------------------------------------";
     public static void println(String message) {
         System.out.println(message);
     }
