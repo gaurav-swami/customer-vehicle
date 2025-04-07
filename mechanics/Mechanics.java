@@ -6,14 +6,14 @@ public class Mechanics {
     public static void main(String args[]) {
         while (true) {
             String menu = """
---------------------------------------------------------------
-1. Display all Mechanics
-2. Add a Mechanic
-3. Edit a Mechanic
-4. Delete a Mechanic
-5. Exit
---------------------------------------------------------------
-                    """;
+                    --------------------------------------------------------------
+                    1. Display all Mechanics
+                    2. Add a Mechanic
+                    3. Edit a Mechanic
+                    4. Delete a Mechanic
+                    5. Exit
+                    --------------------------------------------------------------
+                                        """;
             println(menu);
             int choice = inputInt("Enter a choice");
 
@@ -32,6 +32,9 @@ public class Mechanics {
                         DeleteMechanic.main(null);
                         break;
                     case 5:
+                        SearchMechanic.main(null);
+                        break;
+                    case 6:
                         return;
                     default:
                         println("Invalid choice! Please try again.");
