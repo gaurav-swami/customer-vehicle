@@ -33,11 +33,13 @@ public class Printing {
     }
 
     public static int inputInt(String message) {
-        String input = JOptionPane.showInputDialog(null, message);
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            return Integer.MIN_VALUE;
+        while (true) {
+            String input = JOptionPane.showInputDialog(null, message);
+            try {
+                return Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                message = "Invalid input. " + message;
+            }
         }
     }
 
@@ -77,24 +79,55 @@ public class Printing {
             checkPending.setInt(1, id);
             rs = checkPending.executeQuery();
             if (rs.next() && rs.getInt(1) > 0) {
-                return true; 
+                return true;
             }
         } finally {
             if (rs != null) {
                 try {
                     rs.close();
                 } catch (SQLException e) {
-                    e.printStackTrace(); 
+                    e.printStackTrace();
                 }
             }
             if (checkPending != null) {
                 try {
                     checkPending.close();
                 } catch (SQLException e) {
-                    e.printStackTrace(); 
+                    e.printStackTrace();
                 }
             }
         }
-        return false; 
+        return false;
     }
+
+    public static ResultSet searchRecord(Connection conn, String keyName, String tableName, int id)
+            throws SQLException {
+        PreparedStatement searchIt = null;
+        ResultSet rs = null;
+
+        try {
+            String query = "SELECT * FROM " + tableName + " WHERE " + keyName + " = ?";
+            searchIt = conn.prepareStatement(query);
+            searchIt.setInt(1, id);
+            rs = searchIt.executeQuery();
+
+            return rs;
+        } catch (SQLException e) {
+
+            System.err.println("An error occurred during searchRecord: " + e.getMessage());
+            throw e;
+
+        } finally {
+            if (searchIt != null) {
+                try {
+                    searchIt.close();
+                } catch (SQLException e) {
+                    System.err.println("Error closing PreparedStatement: " + e.getMessage());
+
+                }
+            }
+
+        }
+    }
+
 }
