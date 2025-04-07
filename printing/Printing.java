@@ -83,18 +83,33 @@ public class Printing {
             }
         } finally {
             if (rs != null) {
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                rs.close();
             }
             if (checkPending != null) {
-                try {
-                    checkPending.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+                checkPending.close();
+            }
+        }
+        return false;
+    }
+
+    public static boolean hasPendingPayment(Connection conn, int id, String idColumnName) throws SQLException {
+        PreparedStatement checkPending = null;
+        ResultSet rs = null;
+        try {
+            String query = "SELECT COUNT(*) FROM service_booking WHERE " + idColumnName
+                    + " = ? AND payment_status = 'Unpaid'";
+            checkPending = conn.prepareStatement(query);
+            checkPending.setInt(1, id);
+            rs = checkPending.executeQuery();
+            if (rs.next() && rs.getInt(1) > 0) {
+                return true;
+            }
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (checkPending != null) {
+                checkPending.close();
             }
         }
         return false;
@@ -120,12 +135,7 @@ public class Printing {
 
         } finally {
             if (searchIt != null) {
-                try {
-                    searchIt.close();
-                } catch (SQLException e) {
-                    System.err.println("Error closing PreparedStatement: " + e.getMessage());
-
-                }
+                searchIt.close();
             }
         }
 
@@ -150,12 +160,10 @@ public class Printing {
 
         } finally {
             if (searchIt != null) {
-                try {
-                    searchIt.close();
-                } catch (SQLException e) {
-                    System.err.println("Error closing PreparedStatement: " + e.getMessage());
-
-                }
+                searchIt.close();
+            }
+            if (rs != null) {
+                rs.close();
             }
 
         }
