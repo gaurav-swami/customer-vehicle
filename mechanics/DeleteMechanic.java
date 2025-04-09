@@ -21,7 +21,7 @@ public class DeleteMechanic {
 
       if (hasPendingBookings(conn, mechanicId, "mechanicId")) {
         showMsg("Cannot delete the mechanic as this mechanic has pending services.");
-        return; // Exit the main method
+        return; 
       }
 
       PreparedStatement updateBookings = conn.prepareStatement(
