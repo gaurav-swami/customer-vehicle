@@ -8,10 +8,10 @@ public class Vehicles {
       String menu = """
           --------------------------------------------------------------
           1. Display all Vehicles
-          2. Add a Vehicles
-          3. Edit a Vehicles
-          4. Delete a Vehicles
-          5. Search a Vehile
+          2. Add a Vehicle
+          3. Edit a Vehicle
+          4. Delete a Vehicle
+          5. Search a Vehicle
           6. Exit
           --------------------------------------------------------------
                       """;
